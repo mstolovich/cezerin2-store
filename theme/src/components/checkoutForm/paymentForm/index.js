@@ -3,6 +3,7 @@ import api from '../../../lib/api';
 import PayPalCheckout from './PayPalCheckout';
 import LiqPay from './LiqPay';
 import StripeElements from './StripeElements';
+import Fondy from './Fondy';
 
 export default class PaymentForm extends React.Component {
 	constructor(props) {
@@ -66,6 +67,7 @@ export default class PaymentForm extends React.Component {
 		if (formSettings && gateway && gateway !== '') {
 			switch (gateway) {
 				case 'paypal-checkout':
+
 					return (
 						<div className="payment-form">
 							<PayPalCheckout
@@ -86,6 +88,7 @@ export default class PaymentForm extends React.Component {
 						</div>
 					);
 				case 'stripe-elements':
+
 					return (
 						<div className="payment-form">
 							<StripeElements
@@ -96,10 +99,21 @@ export default class PaymentForm extends React.Component {
 							/>
 						</div>
 					);
+				case 'fondy':
+
+						return (
+						<div className="payment-form">
+							<Fondy
+								formSettings={formSettings}
+								shopSettings={shopSettings}
+								onPayment={onPayment}
+							/>
+						</div>
+						);
 				default:
 					return (
 						<div>
-							Payment Gateway <b>{gateway}</b> not found!
+							 Payment Gateway <b>{gateway}</b> is not found!
 						</div>
 					);
 			}

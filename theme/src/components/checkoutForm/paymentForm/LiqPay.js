@@ -1,7 +1,7 @@
 import React from 'react';
 
 let scriptAdded = false;
-export default class PayPalButton extends React.Component {
+export default class LiqPay extends React.Component {
 	constructor(props) {
 		super(props);
 	}
@@ -35,22 +35,27 @@ export default class PayPalButton extends React.Component {
 		})
 			.on('liqpay.callback', data => {
 				if (data.status === 'success') {
+					
 					onPayment();
 				}
 			})
 			.on('liqpay.ready', data => {
-				// ready
+				
+				console.log('liqpay.ready')// ready
 			})
 			.on('liqpay.close', data => {
 				// close
+				console.log('liqpay close')
 			});
 	};
 
 	componentDidMount() {
+		console.log('liqpay did mount')
 		this.addScript();
 	}
-
+	
 	componentDidUpdate() {
+		console.log('liqpay did update')
 		this.executeScript();
 	}
 
@@ -59,6 +64,7 @@ export default class PayPalButton extends React.Component {
 
 		return (
 			<div>
+				Liqpay hello!
 				<div id="liqpay_checkout" />
 			</div>
 		);
